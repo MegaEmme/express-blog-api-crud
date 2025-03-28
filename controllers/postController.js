@@ -31,7 +31,7 @@ function update (req,res){
 
 function modify (req,res){
     const {id} = req.params;
-    res.send('Modifica parziale del post ' + id);
+    res.send('Modifica totale del post ' + id);
 };
 
 function destroy (req,res){
