@@ -34,3 +34,5 @@ function destroy (req,res){
     const {id} = req.params
     res.send('Eliminazione del dolce ' + id);
 };
+
+module.exports = { index, show, store, update, modify, destroy};
