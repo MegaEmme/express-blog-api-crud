@@ -1,7 +1,11 @@
 const posts = require('../data/posts');
 
 function index (req,res){
-    res.json(posts);
+    let filteredPosts = posts;
+    if(req.query.tags){
+        filteredPosts = posts.filter(post => post.tags.includes(req.query.tags));
+    }
+    res.json(filteredPosts);
 };
 
 function show (req,res){
@@ -31,8 +35,19 @@ function modify (req,res){
 };
 
 function destroy (req,res){
-    const {id} = req.params
-    res.send('Eliminazione del post ' + id);
+    const id = parseInt(req.params.id);
+    const post = posts.find(post => post.id === id);
+    if(!post){
+        res.status(404);
+        return res.json({
+            status: 404,
+            error: 'Not Found',
+            message: 'Post non trovato'
+        });
+    };
+    posts.splice(posts.indexOf(post), 1);
+    console.log(posts);
+    res.sendStatus(204);
 };
 
-module.exports = { index, show, store, update, modify, destroy};
+module.exports = {index, show, store, update, modify, destroy};
