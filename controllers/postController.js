@@ -17,22 +17,22 @@ function show (req,res){
 };
 
 function store (req,res){
-    res.send('Creazione nuovo dolce');
+    res.send('Creazione nuovo post');
 };
 
 function update (req,res){
     const {id} = req.params;
-    res.send('Modifica parziale del dolce ' + id);
+    res.send('Modifica parziale del post ' + id);
 };
 
 function modify (req,res){
     const {id} = req.params;
-    res.send('Modifica parziale del dolce ' + id);
+    res.send('Modifica parziale del post ' + id);
 };
 
 function destroy (req,res){
     const {id} = req.params
-    res.send('Eliminazione del dolce ' + id);
+    res.send('Eliminazione del post ' + id);
 };
 
 module.exports = { index, show, store, update, modify, destroy};
