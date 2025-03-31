@@ -61,8 +61,35 @@ function update (req,res){
 };
 
 function modify (req,res){
-    const {id} = req.params;
-    res.send('Modifica totale del post ' + id);
+    // const {id} = req.params;
+    // res.send('Modifica totale del post ' + id);
+    const id = parseInt(req.params.id);
+    const post = posts.find(post=>post.id===id);
+    if(!post){
+        res.status(404);
+        return res.json({
+            status: 404,
+            error: "Not Found",
+            message: "Post non trovato"
+        })
+    };
+    //prima della modifica
+    console.log(post);
+    if(req.body.title){
+        post.title = req.body.title //modifico title
+    }
+    if(req.body.content){
+        post.content = req.body.content //modifico content
+    }
+    if(req.body.image){
+        post.image = req.body.image //modifico image
+    }
+    if(req.body.tags){
+        post.tags = req.body.tags //modifico tags
+    }
+    //dopo la modifica
+    console.log(post);
+    res.json(post);    
 };
 
 function destroy (req,res){
