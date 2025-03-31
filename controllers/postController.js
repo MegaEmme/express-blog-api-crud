@@ -21,12 +21,43 @@ function show (req,res){
 };
 
 function store (req,res){
-    res.send('Creazione nuovo post');
+    const newId = posts[posts.length-1].id +1;
+    const newPost = {
+        id: newId,
+        title: req.body.title,
+        content: req.body.content,
+        image: req.body.image,
+        tags: req.body.tags
+    };
+    console.log(newPost);
+
+    posts.push(newPost);
+
+    console.log(posts);
+
+    res.status(201).json(newPost);
 };
 
 function update (req,res){
-    const {id} = req.params;
-    res.send('Modifica parziale del post ' + id);
+    const id = parseInt(req.params.id);
+    const post = posts.find(post=>post.id===id);
+    if(!post){
+        res.status(404);
+        return res.json({
+            status: 404,
+            error: "Not Found",
+            message: "Post non trovato"
+        })
+    };
+    //prima della modifica
+    console.log(post);
+    post.title = req.body.title;
+    post.content = req.body.content;
+    post.image = req.body.image;
+    post.tags = req.body.tags;
+    //dopo la modifica
+    console.log(post);
+    res.json(post);
 };
 
 function modify (req,res){
