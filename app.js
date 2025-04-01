@@ -7,6 +7,8 @@ const port = 7000;
 const postsRouter = require('./routers/postsRouter');
 //importo middleware errorsHandler
 const errorsHandler = require('./middlewares/errorsHandler');
+//importo middleware notFound
+const notFound = require('./middlewares/notFound');
 //registro gli assets statici
 app.use(express.static('public'));
 //registro il body parser per application json
@@ -19,6 +21,8 @@ app.get('/', (req,res)=>{
 });
 //registro il middleware errorsHandler
 app.use(errorsHandler);
+//registro il middleware notFound
+app.use(notFound);
 //attivo il server sulla porta
 app.listen(port, ()=> {
     console.log(`sono un server attivo sulla porta ${port}`);
