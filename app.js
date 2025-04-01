@@ -5,6 +5,8 @@ const app = express();
 const port = 7000;
 //importo il router
 const postsRouter = require('./routers/postsRouter');
+//importo middleware checkTime
+const checkTime = require('./middlewares/checkTime');
 //importo middleware errorsHandler
 const errorsHandler = require('./middlewares/errorsHandler');
 //importo middleware notFound
@@ -19,6 +21,8 @@ app.use('/posts', postsRouter);
 app.get('/', (req,res)=>{
     res.send('<h1>Il mio server</h1>');
 });
+//registro il middleware checkTime
+app.use(checkTime);
 //registro il middleware errorsHandler
 app.use(errorsHandler);
 //registro il middleware notFound
