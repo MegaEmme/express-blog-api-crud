@@ -2,6 +2,7 @@ const posts = require('../data/posts');
 //CRUD
 //index
 function index (req,res){
+    // provaerrore(); variabile inesistente per prova middleware errori
     let filteredPosts = posts;
     if(req.query.tags){
         filteredPosts = posts.filter(post => post.tags.includes(req.query.tags));
