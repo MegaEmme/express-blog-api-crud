@@ -1,5 +1,6 @@
 const posts = require('../data/posts');
-
+//CRUD
+//index
 function index (req,res){
     let filteredPosts = posts;
     if(req.query.tags){
@@ -7,7 +8,7 @@ function index (req,res){
     }
     res.json(filteredPosts);
 };
-
+//show
 function show (req,res){
     const id = parseInt(req.params.id);
     const post = posts.find(post => post.id === id);
@@ -19,7 +20,7 @@ function show (req,res){
     };
     res.json(post);
 };
-
+//store
 function store (req,res){
     const newId = posts[posts.length-1].id +1;
     const newPost = {
@@ -30,14 +31,11 @@ function store (req,res){
         tags: req.body.tags
     };
     console.log(newPost);
-
     posts.push(newPost);
-
     console.log(posts);
-
     res.status(201).json(newPost);
 };
-
+//update
 function update (req,res){
     const id = parseInt(req.params.id);
     const post = posts.find(post=>post.id===id);
@@ -59,10 +57,8 @@ function update (req,res){
     console.log(post);
     res.json(post);
 };
-
+//modify
 function modify (req,res){
-    // const {id} = req.params;
-    // res.send('Modifica totale del post ' + id);
     const id = parseInt(req.params.id);
     const post = posts.find(post=>post.id===id);
     if(!post){
@@ -91,7 +87,7 @@ function modify (req,res){
     console.log(post);
     res.json(post);    
 };
-
+//destroy
 function destroy (req,res){
     const id = parseInt(req.params.id);
     const post = posts.find(post => post.id === id);
