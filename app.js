@@ -5,11 +5,11 @@ const app = express();
 const port = 7000;
 
 const postsRouter = require('./routers/postsRouter');
-//collego la cartella public
+//registro gli assets statici
 app.use(express.static('public'));
 //registro il body parser per application json
 app.use(express.json());
-
+//resgistro la path in cui posizionare il router
 app.use('/posts', postsRouter);
 
 app.get('/', (req,res)=>{
